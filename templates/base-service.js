@@ -4,9 +4,9 @@ const Op = Sequelize.Op;
 class ModelBaseService {
 
     buildQuery(params = {}) {
-        const queryObject = Object.assign(this.defaultPagination(), params.pageInfo || {});
-        if(params.attributes) queryObject.attributes = Object.assign({}, params.attributes);
-        if(params.conditions) queryObject.where = this.buildWhereCondition(Object.assign({}, params.conditions));
+        const queryObject = this.pageInfo(params.pageInfo);
+        if(params.attributes) queryObject.attributes = Object.assign(params.attributes, {});
+        if(params.conditions) queryObject.where = this.buildWhereCondition(Object.assign(params.conditions, {}));
         return queryObject;
     }
 
@@ -16,6 +16,14 @@ class ModelBaseService {
                 conditions[key] = { [Op.in] : conditions[key] }
 
         return conditions;
+    }
+
+    pageInfo(pageInfo = {}) {
+        const defaultPagination = this.defaultPagination();
+        return {
+            offset: parseInt(pageInfo.offset || defaultPagination.offset),
+            limit: parseInt(pageInfo.limit || defaultPagination.limit)
+        }
     }
 
     defaultPagination() {
