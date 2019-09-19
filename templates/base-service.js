@@ -20,8 +20,9 @@ class ModelBaseService {
 
     pageInfo(pageInfo = {}) {
         const defaultPagination = this.defaultPagination();
+        const offset = parseInt(pageInfo.limit || defaultPagination.limit) * (parseInt(pageInfo.pageNum) || 0)
         return {
-            offset: parseInt(pageInfo.offset || defaultPagination.offset),
+            offset:  offset,
             limit: parseInt(pageInfo.limit || defaultPagination.limit)
         }
     }
