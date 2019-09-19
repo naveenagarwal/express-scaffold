@@ -4,7 +4,7 @@ const Op = Sequelize.Op;
 class ModelBaseService {
 
     buildQuery(params = {}) {
-        const queryObject = Object.assign(this.defaultPagination(), params.pageInfo);
+        const queryObject = Object.assign(this.defaultPagination(), params.pageInfo || {});
         if(params.attributes) queryObject.attributes = Object.assign({}, params.attributes);
         if(params.conditions) queryObject.where = this.buildWhereCondition(Object.assign({}, params.conditions));
         return queryObject;
