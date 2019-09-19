@@ -20,8 +20,8 @@ class ${name}Service extends ModelBaseService {
 
     async create(params) {
         return ${name}.create(params)
-            .then(([user, created]) => {
-                return user.get({ plain: true });
+            .then((user) => {
+                return user;
             });
     }
 

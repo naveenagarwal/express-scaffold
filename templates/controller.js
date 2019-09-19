@@ -55,7 +55,7 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
     try {
         const ${getObjectName(name)}Service = new ${name}Service();
-        const ${getObjectName(name)} = await ${name}Service.destroy(req.params.id);
+        const ${getObjectName(name)} = await ${getObjectName(name)}Service.destroy(req.params.id);
         res.json({ data: ${getObjectName(name)} });
     } catch (error) {
         next(error);
