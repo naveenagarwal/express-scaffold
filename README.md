@@ -1,5 +1,5 @@
 # express-scaffold
-This package will provide scaffold functionality similar to rails scaffold generator which can be used to create the controller, model, ser vice and migration.
+This package will provide scaffold functionality similar to rails scaffold generator which can be used to create the controller, model, service and migration.
 
 **Note**: This is an extention to sequelize-cli package, hence will only work to support sequelize ORM for now.
 
@@ -19,7 +19,7 @@ module.exports = {
 
 **Step 2.**
 ```
-npm install --save-dev express-scaffold
+npm install --save-dev @naveen.agarwal/express-scaffold
 scaffold --force --name User --attributes firstName:string,lastName:string
 // above command syntax is same as sequelize-cli model creation syntax
 ```
