@@ -9,7 +9,7 @@ class ${name}Service extends ModelBaseService {
 
     async findAll(params) {
         const queryParams = this.buildQuery(params);
-        return ${name}.findAll(params);
+        return ${name}.findAll(queryParams);
     }
 
     async find(id) {
