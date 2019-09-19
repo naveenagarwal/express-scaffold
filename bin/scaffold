@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 
-console.log("Running the script to generate the scaffold fo rthe entity.");
+console.log("Running the script to generate the scaffold for the entity.");
 
 const fs = require("fs");
 const shell = require('shelljs');
