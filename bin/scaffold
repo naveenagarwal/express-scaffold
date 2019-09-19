@@ -22,7 +22,7 @@ const optionDefinitions = [
 const options = commandLineArgs(optionDefinitions);
 
 // run sequelize cli model generaiton command
-const sequelizeCommand = `npx sequelize-cli model:generate ${options.force ? '--force' : '' } --name ${options.name} --attributes ${options.attributes.join(' ')}`
+const sequelizeCommand = `npx sequelize-cli model:generate ${options.force ? '--force' : '' } --name ${options.name} --attributes ${options.attributes.join(',')}`
 
 console.log(`executing:\n${sequelizeCommand}`);
 shell.exec(sequelizeCommand);
