@@ -33,6 +33,16 @@ lib/services/base-service.js // if not already exists
 lib/services/user-service.js
 ```
 
+**Step 3.**
+
+Mount it in oyur main routing file o index.js/app.js
+```
+const express = require('express')
+const app = express()
+const user = require('./app/controllers/user-controller');
+app.use('/users', user);
+```
+
 ### Whats coming?
 - [ ] Strong params implementation
 - [ ] Integration tests for controller
