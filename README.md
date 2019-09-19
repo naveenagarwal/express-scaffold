@@ -32,3 +32,8 @@ controllers/user-controller.js
 lib/services/base-service.js // if not already exists
 lib/services/user-service.js
 ```
+
+### Whats coming?
+- [ ] Strong params implementation
+- [ ] Integration tests for controller
+- [ ] Integration tests for service
