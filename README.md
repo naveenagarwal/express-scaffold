@@ -27,9 +27,9 @@ npm sequelize-cli db:migrate
 
 The above command will generate the following files:
 ```
-models/user.js
+app/models/user.js
 migraitons/{TimeStamp}-create-user.js
-controllers/user-controller.js
+app/controllers/user-controller.js
 lib/services/base-service.js // if not already exists
 lib/services/user-service.js
 ```
