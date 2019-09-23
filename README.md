@@ -36,7 +36,7 @@ lib/services/user-service.js
 
 **Step 3.**
 
-Mount it in oyur main routing file o index.js/app.js
+Mount it in your main routing file o index.js/app.js
 ```
 const express = require('express')
 const app = express()
