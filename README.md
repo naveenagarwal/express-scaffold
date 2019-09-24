@@ -20,9 +20,9 @@ module.exports = {
 **Step 2.**
 ```
 npm install --save-dev @naveen.agarwal/express-scaffold
-./node_modules/.bin/scaffold  --force --name User --attributes firstName:string,lastName:string
+npx scaffold  --force --name User --attributes firstName:string,lastName:string
 // above command syntax is same as sequelize-cli model creation syntax
-npm sequelize-cli db:migrate
+npx sequelize-cli db:migrate
 ```
 
 The above command will generate the following files:
@@ -46,5 +46,6 @@ app.use('/users', user);
 
 ### Whats coming?
 - [ ] Strong params implementation
+- [ ] Swagger API specs
 - [ ] Integration tests for controller
 - [ ] Integration tests for service
