@@ -7,7 +7,10 @@ const shell = require('shelljs');
 const commandLineArgs = require('command-line-args');
 
 const { getDefaultConfig, getFileName, getObjectName } = require('../utils');
-const { controllersTemplate, servicesTemplates, baseServiceTemplate } = require('../templates');
+const { controllersTemplate,
+        servicesTemplates,
+        baseServiceTemplate,
+        middlewareTemplate } = require('../templates');
 
 const cwd = process.cwd();
 const sequelizercPath = cwd + '/.sequelizerc';
@@ -28,16 +31,18 @@ console.log(`executing:\n${sequelizeCommand}`);
 shell.exec(sequelizeCommand);
 console.log('sequelize default commands executed');
 
-// creating controllers and services
-console.log('------------ Createing controllers and services-------------');
+// creating controllers, middlwares, and services
+console.log('------------ Createing controllers, middlwares, and services-------------');
 
 // create if controller or services directories don't exists
 shell.exec(`mkdir -p ${config['services-path'] }`);
 shell.exec(`mkdir -p ${config['controllers-path'] }`);
+shell.exec(`mkdir -p ${config['middlewares-path'] }`);
 
 // paths variables
 const servicesPath = config['services-path'].replace(cwd, '');
 const modelsPath = config['models-path'].replace(cwd, '');
+const middlewaresPath =  config['middlewares-path'].replace(cwd, '');
 
 // create base service
 const baseServiceFilePath = config['services-path'] + '/base-service.js';
@@ -54,10 +59,23 @@ if (!fs.existsSync(serviceFilePath) || options.force) {
     console.log('Created model service: ' + serviceFilePath);
 }
 
+// create strong-params middlewares for the controller actions
+const middlewareFileName = getFileName(options.name, "-middleware.js");
+const middlewareFilePath = config['middlewares-path'] + `/${middlewareFileName}`;
+const attributesFields = options.attributes.join(',').split(',').map((attribute) => attribute.replace(/\:.*/g, ''));
+const conditionsFileds = ['id', ...attributesFields];
+if (!fs.existsSync(middlewareFilePath) || options.force) {
+    fs.writeFileSync(middlewareFilePath, middlewareTemplate(options.name, conditionsFileds, attributesFields));
+    console.log('Created middleware: ' + middlewareFilePath);
+}
+
 // create name controller
 const controllerFilename = getFileName(options.name, "-controller.js");
 const controllerFilePath = config['controllers-path'] + `/${controllerFilename}`;
 if (!fs.existsSync(controllerFilePath) || options.force) {
-    fs.writeFileSync(controllerFilePath, controllersTemplate(options.name, servicesPath, getFileName, getObjectName));
+    fs.writeFileSync(controllerFilePath, controllersTemplate(options.name, servicesPath, middlewaresPath, getFileName, getObjectName));
     console.log('Created controller: ' + controllerFilePath);
 }
+
+// its all done, exit the process
+process.exit(0);

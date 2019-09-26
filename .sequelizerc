@@ -3,5 +3,6 @@ const path = require('path');
 module.exports = {
   'controllers-path': path.resolve('app', 'controllers'),
   'models-path': path.resolve('app', 'models'),
-  'services-path': path.resolve('lib', 'services')
+  'services-path': path.resolve('lib', 'services'),
+  'middlewares-path': path.resolve('lib', 'middlewares')
 }

@@ -1,6 +1,6 @@
 {
   "name": "@naveen.agarwal/express-scaffold",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "This package will provide scaffold functionality similar to rails scaffold generator which can be used to create the controller, model, service and migration.",
   "main": "index.js",
   "scripts": {
@@ -28,10 +28,7 @@
   "dependencies": {
     "command-line-args": "^5.1.1",
     "express": "^4.17.1",
-    "sequelize": "^5.18.4",
-    "sequelize-cli": "^5.5.1",
     "shelljs": "^0.8.3",
-    "strong-params": "^1.0.0",
     "user": "0.0.0"
   }
 }

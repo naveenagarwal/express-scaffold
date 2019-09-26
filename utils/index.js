@@ -3,7 +3,8 @@ const utilFunctions = {
         return {
             "models-path": cwd + '/models',
             "controllers-path": cwd + '/app/controllers',
-            "services-path": cwd + '/lib/services'
+            "services-path": cwd + '/lib/services',
+            "middlewares-path": cwd + '/lib/middlewares'
         }
     },
 

@@ -1,5 +1,5 @@
 # express-scaffold
-This package will provide scaffold functionality similar to rails scaffold generator which can be used to create the controller, model, service and migration.
+This package will provide scaffold functionality similar to rails scaffold generator which can be used to create the controller, model, service, middleware, and migration.
 
 **Note**: This is an extention to sequelize-cli package, hence will only work to support sequelize ORM for now.
 
@@ -13,7 +13,8 @@ const path = require('path');
 module.exports = {
   'controllers-path': path.resolve('app', 'controllers'),
   'models-path': path.resolve('app', 'models'),
-  'services-path': path.resolve('lib', 'services')
+  'services-path': path.resolve('lib', 'services'),
+  'middlewares-path': path.resolve('lib', 'middlewares')
 }
 ```
 
@@ -32,6 +33,7 @@ migraitons/{TimeStamp}-create-user.js
 app/controllers/user-controller.js
 lib/services/base-service.js // if not already exists
 lib/services/user-service.js
+lib/middlewares/user-middleware.js
 ```
 
 **Step 3.**
@@ -45,7 +47,7 @@ app.use('/users', user);
 ```
 
 ### Whats coming?
-- [ ] Strong params implementation
+- [x] Strong params implementation (*Released in version 1.1.0*)
 - [ ] Swagger API specs
 - [ ] Integration tests for controller
 - [ ] Integration tests for service
