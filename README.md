@@ -47,6 +47,18 @@ const user = require('./app/controllers/user-controller');
 app.use('/users', user);
 ```
 
+**Update**
+Strong params has been added. In order to make it work please ensure you have strong params added in your application. If not then you can add it by running following commands:
+
+```
+npm i --save strong-params
+
+// and then add the strong params middleware in your application index/app js file.
+const params = require('strong-params');
+app.use(params.expressMiddleware());
+
+```
+
 ### Whats coming?
 - [x] Strong params implementation (*Released in version 1.1.0*)
 - [ ] Swagger API specs

@@ -16,7 +16,6 @@ module.exports = (name, conditionsFileds, attributesFields) => `const ALLOWED_PA
 middlewares = {
     permit: function(req, params, key) {
         Object.keys(params).forEach((param) => {
-            console.log(param);
             if(key == 'query') {
                 if(req.query[param])
                     req.query[param] = req.parameters.require(param).permit(...params[param]).value();

@@ -1,6 +1,6 @@
 {
   "name": "@naveen.agarwal/express-scaffold",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "This package will provide scaffold functionality similar to rails scaffold generator which can be used to create the controller, model, service and migration.",
   "main": "index.js",
   "scripts": {
