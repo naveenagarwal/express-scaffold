@@ -21,6 +21,7 @@ module.exports = {
 **Step 2.**
 ```
 npm install --save-dev @naveen.agarwal/express-scaffold
+npx sequelize-cli init
 npx scaffold  --force --name User --attributes firstName:string,lastName:string
 // above command syntax is same as sequelize-cli model creation syntax
 npx sequelize-cli db:migrate
