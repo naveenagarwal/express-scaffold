@@ -6,7 +6,7 @@ const fs = require("fs");
 const shell = require('shelljs');
 const commandLineArgs = require('command-line-args');
 
-const { getDefaultConfig, getFileName, getObjectName } = require('../utils');
+const { getDefaultConfig, getFileName, getObjectName, getAttributes } = require('../utils');
 const { controllersTemplate,
         servicesTemplates,
         baseServiceTemplate,
@@ -76,6 +76,18 @@ if (!fs.existsSync(controllerFilePath) || options.force) {
     fs.writeFileSync(controllerFilePath, controllersTemplate(options.name, servicesPath, middlewaresPath, getFileName, getObjectName));
     console.log('Created controller: ' + controllerFilePath);
 }
+
+
+// generate the api-specs
+const Swagger = require('@amiadeveloper/express-swagger-specs-generator');
+const attributes =  getAttributes(options.attributes.join(',').split(','))// JSON.parse(fs.readFileSync(options.filepath));
+const path = cwd + '/api-specs';
+
+// create the swagger specs from the file
+const swagger = new Swagger(options.name, attributes, path);
+swagger.init();
+swagger.generateSpecFile(options.force);
+swagger.generateSwaggerJSONFile();
 
 // its all done, exit the process
 process.exit(0);

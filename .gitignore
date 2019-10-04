@@ -4,6 +4,7 @@ config
 lib
 seeders
 migrations
+api-specs
 # Logs
 logs
 *.log
