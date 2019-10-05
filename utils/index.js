@@ -18,7 +18,7 @@ const utilFunctions = {
     },
 
     getAttributes: function(attributes){
-        attributes = attributes.map((attribute) => {
+        attributes = [...attributes, 'createdAt:datetime', 'updatedAt:datetime'].map((attribute) => {
             const [name, type] = attribute.split(':')
             const formattedAttribute = {
                 'name' : name,
