@@ -1,5 +1,5 @@
-module.exports = (modelsPath) => `const { Sequelize } = require(process.cwd() + '${modelsPath}');
-const Op = Sequelize.Op;
+module.exports = (modelsPath) => `const db = require(process.cwd() + '/src/app/models');
+const Op = db.Sequelize.Op;
 
 class ModelBaseService {
 
@@ -7,7 +7,21 @@ class ModelBaseService {
         const queryObject = this.pageInfo(params.pageInfo);
         if(params.attributes) queryObject.attributes = Object.assign(params.attributes, {});
         if(params.conditions) queryObject.where = this.buildWhereCondition(Object.assign(params.conditions, {}));
+        if(params.include) queryObject.include = this.buildIncludeCondition(params.include, params.include_conditions)
+        if(params.order) queryObject.order = [ params.order.split(',') ]
         return queryObject;
+    }
+
+    buildIncludeCondition(models, modelConditions = {}) {
+        console.log(models);
+        return models.map((model) => {
+            const condition = { model: db[model] }
+
+            if(modelConditions[model])
+                condition.where = this.buildWhereCondition(Object.assign(modelConditions[model].conditions, {}));
+
+            return condition;
+        });
     }
 
     buildWhereCondition(conditions) {

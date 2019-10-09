@@ -1,7 +1,8 @@
 module.exports = (name, conditionsFileds, attributesFields) => `const ALLOWED_PARAMS = {
     "getAll": {
         "conditions" : ${JSON.stringify(conditionsFileds)},
-        "pageInfo" : ["pageNum", "limit"]
+        "pageInfo" : ["pageNum", "limit"],
+        "include": []
     },
 
     "create" : {
@@ -13,12 +14,16 @@ module.exports = (name, conditionsFileds, attributesFields) => `const ALLOWED_PA
     }
 };
 
-middlewares = {
+${name}middlewares = {
     permit: function(req, params, key) {
         Object.keys(params).forEach((param) => {
             if(key == 'query') {
-                if(req.query[param])
-                    req.query[param] = req.parameters.require(param).permit(...params[param]).value();
+                if(req.query[param]) {
+                    if(req.query[param] instanceof Array)
+                        req.query[param] = req.parameters.require(param).all();
+                    else
+                        req.query[param] = req.parameters.require(param).permit(...params[param]).value();
+                }
             } else if( key == 'body') {
                 if(req.body[param])
                     req.body[param] = req.parameters.require(param).permit(...params[param]).value();
@@ -43,4 +48,4 @@ middlewares = {
     }
 }
 
-module.exports = middlewares;`;
+module.exports = ${name}middlewares;`;
