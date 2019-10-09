@@ -37,17 +37,17 @@ ${name}middlewares = {
     },
 
     onGetAll: function(req, res, next) {
-        middlewares.permit(req, ALLOWED_PARAMS["getAll"], 'query');
+        ${name}middlewares.permit(req, ALLOWED_PARAMS["getAll"], 'query');
         next();
     },
 
     onCreate: function(req, res, next) {
-        middlewares.permit(req, ALLOWED_PARAMS["create"], 'body');
+        ${name}middlewares.permit(req, ALLOWED_PARAMS["create"], 'body');
         next();
     },
 
     onUpdate: function(req, res, next) {
-        middlewares.permit(req, ALLOWED_PARAMS["update"], 'body');
+        ${name}middlewares.permit(req, ALLOWED_PARAMS["update"], 'body');
         next();
     }
 }
