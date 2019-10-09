@@ -8,7 +8,7 @@ class ModelBaseService {
         if(params.attributes) queryObject.attributes = Object.assign(params.attributes, {});
         if(params.conditions) queryObject.where = this.buildWhereCondition(Object.assign(params.conditions, {}));
         if(params.include) queryObject.include = this.buildIncludeCondition(params.include, params.include_conditions)
-        if(params.order) queryObject.order = [ params.order.split(',') ]
+        if(params.order) queryObject.order = [ [params.order.key, params.order.type || 'ASC'] ]
         return queryObject;
     }
 

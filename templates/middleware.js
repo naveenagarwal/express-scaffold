@@ -2,7 +2,8 @@ module.exports = (name, conditionsFileds, attributesFields) => `const ALLOWED_PA
     "getAll": {
         "conditions" : ${JSON.stringify(conditionsFileds)},
         "pageInfo" : ["pageNum", "limit"],
-        "include": []
+        "include": [],
+        "order": ["key", "type"]
     },
 
     "create" : {
@@ -30,6 +31,9 @@ ${name}middlewares = {
             }
 
         });
+
+        if(req.query.include_condition)
+            req.query['include_condition'] = req.parameters.require('include_condition').all();
     },
 
     onGetAll: function(req, res, next) {
