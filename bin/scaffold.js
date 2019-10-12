@@ -10,7 +10,8 @@ const { getDefaultConfig, getFileName, getObjectName, getAttributes } = require(
 const { controllersTemplate,
         servicesTemplates,
         baseServiceTemplate,
-        middlewareTemplate } = require('../templates');
+        middlewareTemplate,
+        baseMiddlewareTemplate } = require('../templates');
 
 const cwd = process.cwd();
 const sequelizercPath = cwd + '/.sequelizerc';
@@ -60,6 +61,12 @@ if (!fs.existsSync(serviceFilePath) || options.force) {
 }
 
 // create strong-params middlewares for the controller actions
+const baseMiddlewarePath = config['middlewares-path'] + '/base-middleware.js';
+if (!fs.existsSync(baseMiddlewarePath) || options.force) {
+    fs.writeFileSync(baseMiddlewarePath, baseMiddlewareTemplate());
+    console.log('Base middleware Created: ' + baseMiddlewarePath);
+}
+
 const middlewareFileName = getFileName(options.name, "-middleware.js");
 const middlewareFilePath = config['middlewares-path'] + `/${middlewareFileName}`;
 const attributesFields = options.attributes.join(',').split(',').map((attribute) => attribute.replace(/\:.*/g, ''));
